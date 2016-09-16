@@ -1,0 +1,14 @@
+---
+title: "Distances between documents"
+author: "Dmitriy Selivanov"
+date: "`r Sys.Date()`"
+---
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, eval=FALSE, warning=FALSE, message=FALSE)
+```
+
+# Cosine Distance
+
+# Jaccard Distance
+
+# Relaxed Word Mover's Distance

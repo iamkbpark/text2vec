@@ -1,0 +1,15 @@
+---
+title: "Vectorization"
+author: "Dmitriy Selivanov"
+date: "`r Sys.Date()`"
+---
+
+# Bag of words
+
+# Tf-idf
+
+# N-grams
+
+# Hashing trick
+
+# Cross validation and vectorization of new data
