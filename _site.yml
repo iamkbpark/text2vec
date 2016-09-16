@@ -1,4 +1,5 @@
-name: "my-website"
+name: "text2vec"
+output_dir: "."
 navbar:
   title: "My Website"
   left:
