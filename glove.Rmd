@@ -36,7 +36,7 @@ $$
 
 Now let's examine how GloVe embeddings works. As commonly known, word2vec word vectors capture many linguistic regularities. To give the canonical example, if we take word vectors for the words "paris," "france," and "germany" and perform the following operation: 
 
-$$vector("paris") - vector("france") + vector('germany")$$ 
+$$vector("paris") - vector("france") + vector("germany")$$ 
 
 the resulting vector will be close to the vector for "rome."
 

@@ -1,5 +1,9 @@
 ---
 title: "text2vec"
+output:
+  html_document:
+    toc: false
+    toc_float: false
 ---
 
 You just discovered text2vec!

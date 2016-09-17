@@ -17,30 +17,54 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/default.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #0000ff; } /* Keyword */
+code > span.ch { color: #008080; } /* Char */
+code > span.st { color: #008080; } /* String */
+code > span.co { color: #008000; } /* Comment */
+code > span.ot { color: #ff4000; } /* Other */
+code > span.al { color: #ff0000; } /* Alert */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #008000; font-weight: bold; } /* Warning */
+code > span.cn { } /* Constant */
+code > span.sc { color: #008080; } /* SpecialChar */
+code > span.vs { color: #008080; } /* VerbatimString */
+code > span.ss { color: #008080; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #0000ff; } /* ControlFlow */
+code > span.op { } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ff4000; } /* Preprocessor */
+code > span.do { color: #008000; } /* Documentation */
+code > span.an { color: #008000; } /* Annotation */
+code > span.cv { color: #008000; } /* CommentVar */
+code > span.at { } /* Attribute */
+code > span.in { color: #008000; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
-
 
 
 <style type="text/css">
@@ -101,34 +125,34 @@ button.code-folding-btn:focus {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 45px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 </style>
 
@@ -164,6 +188,107 @@ $(document).ready(function () {
 <!-- code folding -->
 
 
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -240,37 +365,37 @@ f(X_{ij}) =
 <div id="canonical-example-linguistic-regularities" class="section level1">
 <h1>Canonical example: linguistic regularities</h1>
 <p>Now let’s examine how GloVe embeddings works. As commonly known, word2vec word vectors capture many linguistic regularities. To give the canonical example, if we take word vectors for the words “paris,” “france,” and “germany” and perform the following operation:</p>
-<p><span class="math display">\[vector(&quot;paris&quot;) - vector(&quot;france&quot;) + vector(&#39;germany&quot;)\]</span></p>
+<p><span class="math display">\[vector(&quot;paris&quot;) - vector(&quot;france&quot;) + vector(&quot;germany&quot;)\]</span></p>
 <p>the resulting vector will be close to the vector for “rome.”</p>
 <p>Let’s download the same Wikipedia data used as a demo by word2vec:</p>
-<pre class="r"><code>library(text2vec)
-text8_file = &quot;~/text8&quot;
-if (!file.exists(text8_file)) {
-  download.file(&quot;http://mattmahoney.net/dc/text8.zip&quot;, &quot;~/text8.zip&quot;)
-  unzip (&quot;~/text8.zip&quot;, files = &quot;text8&quot;, exdir = &quot;~/&quot;)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(text2vec)
+text8_file =<span class="st"> &quot;~/text8&quot;</span>
+if (!<span class="kw">file.exists</span>(text8_file)) {
+  <span class="kw">download.file</span>(<span class="st">&quot;http://mattmahoney.net/dc/text8.zip&quot;</span>, <span class="st">&quot;~/text8.zip&quot;</span>)
+  <span class="kw">unzip</span> (<span class="st">&quot;~/text8.zip&quot;</span>, <span class="dt">files =</span> <span class="st">&quot;text8&quot;</span>, <span class="dt">exdir =</span> <span class="st">&quot;~/&quot;</span>)
 }
-wiki = readLines(text8_file, n = 1, warn = FALSE)</code></pre>
+wiki =<span class="st"> </span><span class="kw">readLines</span>(text8_file, <span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">warn =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>In the next step we will create a vocabulary, a set of words for which we want to learn word vectors. Note, that all of text2vec’s functions which operate on raw text data (<code>create_vocabulary</code>, <code>create_corpus</code>, <code>create_dtm</code>, <code>create_tcm</code>) have a streaming API and you should iterate over tokens as the first argument for these functions.</p>
-<pre class="r"><code># Create iterator over tokens
-tokens &lt;- space_tokenizer(wiki)
-# Create vocabulary. Terms will be unigrams (simple words).
-it = itoken(tokens)
-vocab &lt;- create_vocabulary(it)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create iterator over tokens</span>
+tokens &lt;-<span class="st"> </span><span class="kw">space_tokenizer</span>(wiki)
+<span class="co"># Create vocabulary. Terms will be unigrams (simple words).</span>
+it =<span class="st"> </span><span class="kw">itoken</span>(tokens)
+vocab &lt;-<span class="st"> </span><span class="kw">create_vocabulary</span>(it)</code></pre></div>
 <p>These words should not be too uncommon. Fot example we cannot calculate a meaningful word vector for a word which we saw only once in the entire corpus. Here we will take only words which appear at least five times. text2vec provides additional options to filter vocabulary (see <code>?prune_vocabulary</code>).</p>
-<pre class="r"><code>vocab &lt;- prune_vocabulary(vocab, term_count_min = 5L)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vocab &lt;-<span class="st"> </span><span class="kw">prune_vocabulary</span>(vocab, <span class="dt">term_count_min =</span> 5L)</code></pre></div>
 <p>Now we have 71,290 terms in the vocabulary and are ready to construct term-co-occurence matrix (TCM).</p>
-<pre class="r"><code># Use our filtered vocabulary
-vectorizer &lt;- vocab_vectorizer(vocab, 
-                               # don&#39;t vectorize input
-                               grow_dtm = FALSE, 
-                               # use window of 5 for context words
-                               skip_grams_window = 5L)
-tcm &lt;- create_tcm(it, vectorizer)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use our filtered vocabulary</span>
+vectorizer &lt;-<span class="st"> </span><span class="kw">vocab_vectorizer</span>(vocab, 
+                               <span class="co"># don&#39;t vectorize input</span>
+                               <span class="dt">grow_dtm =</span> <span class="ot">FALSE</span>, 
+                               <span class="co"># use window of 5 for context words</span>
+                               <span class="dt">skip_grams_window =</span> 5L)
+tcm &lt;-<span class="st"> </span><span class="kw">create_tcm</span>(it, vectorizer)</code></pre></div>
 <p>Now we have a TCM matrix and can factorize it via the GloVe algorithm.<br />
 text2vec uses a parallel stochastic gradient descent algorithm. By default it will use all cores on your machine, but you can specify the number of cores if you wish. For example, to use 4 threads call <code>RcppParallel::setThreadOptions(numThreads = 4)</code>.</p>
 <p>Let’s fit our model. (It can take several minutes to fit!)</p>
-<pre class="r"><code>glove = GlobalVectors$new(word_vectors_size = 50, vocabulary = vocab, x_max = 10)
-glove$fit(tcm, n_iter = 20)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glove =<span class="st"> </span>GlobalVectors$<span class="kw">new</span>(<span class="dt">word_vectors_size =</span> <span class="dv">50</span>, <span class="dt">vocabulary =</span> vocab, <span class="dt">x_max =</span> <span class="dv">10</span>)
+glove$<span class="kw">fit</span>(tcm, <span class="dt">n_iter =</span> <span class="dv">20</span>)</code></pre></div>
 <blockquote>
 <p>2016-09-16 13:38:52 - epoch 1, expected cost 0.0897<br />
 2016-09-16 13:38:55 - epoch 2, expected cost 0.0607<br />
@@ -294,24 +419,26 @@ glove$fit(tcm, n_iter = 20)</code></pre>
 2016-09-16 13:39:42 - epoch 20, expected cost 0.0379</p>
 </blockquote>
 <p>Alternatively we can train model with R’s <code>S3</code> interface (but keep in mind that all text2vec models are R6 classes and they are mutable! So <code>fit</code>, <code>fit_transform</code> methods modify models!):</p>
-<pre class="r"><code>glove = GlobalVectors$new(word_vectors_size = 50, vocabulary = vocab, x_max = 10)
-# `glove` object will be modified by `fit()` call !
-fit(tcm, glove, n_iter = 20)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glove =<span class="st"> </span>GlobalVectors$<span class="kw">new</span>(<span class="dt">word_vectors_size =</span> <span class="dv">50</span>, <span class="dt">vocabulary =</span> vocab, <span class="dt">x_max =</span> <span class="dv">10</span>)
+<span class="co"># `glove` object will be modified by `fit()` call !</span>
+<span class="kw">fit</span>(tcm, glove, <span class="dt">n_iter =</span> <span class="dv">20</span>)</code></pre></div>
 <p>And now we get the word vectors:</p>
-<pre class="r"><code>word_vectors &lt;- glove$get_word_vectors()</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">word_vectors &lt;-<span class="st"> </span>glove$<span class="kw">get_word_vectors</span>()</code></pre></div>
 <p>We can find the closest word vectors for our <em>paris - france + germany</em> example:</p>
-<pre class="r"><code>berlin &lt;- word_vectors[&quot;paris&quot;, , drop = FALSE] - 
-  word_vectors[&quot;france&quot;, , drop = FALSE] + 
-  word_vectors[&quot;germany&quot;, , drop = FALSE]
-cos_dist = dist2(x = word_vectors, y = berlin, method = &quot;cosine&quot;, norm = &quot;l2&quot;)
-head(sort(cos_dist[,1], decreasing = FALSE), 5)
-# berlin          paris         munich          leipzig        germany
-# 0.1919756       0.2171310      0.2511661      0.2885004      0.3007912</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">berlin &lt;-<span class="st"> </span>word_vectors[<span class="st">&quot;paris&quot;</span>, , drop =<span class="st"> </span><span class="ot">FALSE</span>] -<span class="st"> </span>
+<span class="st">  </span>word_vectors[<span class="st">&quot;france&quot;</span>, , drop =<span class="st"> </span><span class="ot">FALSE</span>] +<span class="st"> </span>
+<span class="st">  </span>word_vectors[<span class="st">&quot;germany&quot;</span>, , drop =<span class="st"> </span><span class="ot">FALSE</span>]
+cos_dist =<span class="st"> </span><span class="kw">dist2</span>(<span class="dt">x =</span> word_vectors, <span class="dt">y =</span> berlin, <span class="dt">method =</span> <span class="st">&quot;cosine&quot;</span>, <span class="dt">norm =</span> <span class="st">&quot;l2&quot;</span>)
+<span class="kw">head</span>(<span class="kw">sort</span>(cos_dist[,<span class="dv">1</span>], <span class="dt">decreasing =</span> <span class="ot">FALSE</span>), <span class="dv">5</span>)
+<span class="co"># berlin          paris         munich          leipzig        germany</span>
+<span class="co"># 0.1919756       0.2171310      0.2511661      0.2885004      0.3007912</span></code></pre></div>
 <p>You can achieve much better results by experimenting with <code>skip_grams_window</code> and the parameters of the <code>GloVe</code> class (including word vectors size and the number of iterations). For more details and large-scale experiments on wikipedia data see this <a href="http://dsnotes.com/blog/text2vec/2015/12/01/glove-enwiki/">post</a> on my blog.</p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
