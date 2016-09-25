@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dmitriy Selivanov" />
 
-<meta name="date" content="2016-09-21" />
+<meta name="date" content="2016-09-25" />
 
 <title>Topic modeling</title>
 
@@ -336,7 +336,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Topic modeling</h1>
 <h4 class="author"><em>Dmitriy Selivanov</em></h4>
-<h4 class="date"><em>2016-09-21</em></h4>
+<h4 class="date"><em>2016-09-25</em></h4>
 
 </div>
 
@@ -351,21 +351,20 @@ div.tocify {
 tokens =<span class="st"> </span>movie_review$review %&gt;%<span class="st"> </span>
 <span class="st">  </span>tolower %&gt;%<span class="st"> </span>
 <span class="st">  </span>word_tokenizer
-<span class="co"># turn off progressbar because it will look ugly in interavtive rmd</span>
+<span class="co"># turn off progressbar because it won&#39;t look nice in rmd</span>
 it =<span class="st"> </span><span class="kw">itoken</span>(tokens, <span class="dt">ids =</span> movie_review$id, <span class="dt">progressbar =</span> <span class="ot">FALSE</span>)
 v =<span class="st"> </span><span class="kw">create_vocabulary</span>(it) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">prune_vocabulary</span>(<span class="dt">term_count_min =</span> <span class="dv">10</span>, <span class="dt">doc_proportion_max =</span> <span class="fl">0.2</span>)
 vectorizer =<span class="st"> </span><span class="kw">vocab_vectorizer</span>(v)
 dtm =<span class="st"> </span><span class="kw">create_dtm</span>(it, vectorizer, <span class="dt">type =</span> <span class="st">&quot;lda_c&quot;</span>)
 
-lda_model =<span class="st"> </span>LDA$<span class="kw">new</span>(<span class="dt">n_topics =</span> <span class="dv">30</span>, 
+lda_model =<span class="st"> </span>LDA$<span class="kw">new</span>(<span class="dt">n_topics =</span> <span class="dv">10</span>, 
                     <span class="dt">vocabulary =</span> v, 
                     <span class="dt">doc_topic_prior =</span> <span class="fl">0.1</span>, 
                     <span class="dt">topic_word_prior =</span> <span class="fl">0.01</span>)
-doc_topic_distr =<span class="st"> </span>lda_model$<span class="kw">fit_transform</span>(dtm, <span class="dt">n_iter =</span> <span class="dv">300</span>, 
-                                          <span class="dt">convergence_tol =</span> <span class="fl">0.005</span>, 
+doc_topic_distr =<span class="st"> </span>lda_model$<span class="kw">fit_transform</span>(dtm, <span class="dt">n_iter =</span> <span class="dv">100</span>, 
+                                          <span class="dt">convergence_tol =</span> <span class="fl">0.01</span>, 
                                           <span class="dt">check_convergence_every_n =</span> <span class="dv">10</span>)</code></pre></div>
-<pre><code>## Early stopping on 190 iteradion. Perplexity improvement for last iteration was 0.33%</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lda_model$<span class="kw">plot</span>()</code></pre></div>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

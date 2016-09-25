@@ -15,19 +15,19 @@ data("movie_review")
 tokens = movie_review$review %>% 
   tolower %>% 
   word_tokenizer
-# turn off progressbar because it will look ugly in interavtive rmd
+# turn off progressbar because it won't look nice in rmd
 it = itoken(tokens, ids = movie_review$id, progressbar = FALSE)
 v = create_vocabulary(it) %>% 
   prune_vocabulary(term_count_min = 10, doc_proportion_max = 0.2)
 vectorizer = vocab_vectorizer(v)
 dtm = create_dtm(it, vectorizer, type = "lda_c")
 
-lda_model = LDA$new(n_topics = 30, 
+lda_model = LDA$new(n_topics = 10, 
                     vocabulary = v, 
                     doc_topic_prior = 0.1, 
                     topic_word_prior = 0.01)
-doc_topic_distr = lda_model$fit_transform(dtm, n_iter = 300, 
-                                          convergence_tol = 0.005, 
+doc_topic_distr = lda_model$fit_transform(dtm, n_iter = 100, 
+                                          convergence_tol = 0.01, 
                                           check_convergence_every_n = 10)
 ```
 

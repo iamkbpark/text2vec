@@ -14,7 +14,7 @@ Finally, a streaming API means that  users do not have to load all the data into
 
 For the detailed overview of `text2vec` functionality please refer to following pages:
 
-1. [Vectorization](vectorization.html) - creation *Document-Term matrices*
-1. [Topic Modeling](topic_modeling.html) - Latent Semantic Analysis (**LSA**) and Latent Dirichlet Allocation (**LDA**) models
-1. [Word Embeddings](glove.html) - Global Vectors (**GloVe**) word embeddings
-1. [Distances](distances.html) - various distances between documents - Cosine, Jaccard, Relaxed Word Mover's Distance (**RWMD**)
+1. [Vectorization](vectorization.html) - creation *Document-Term Matrices* (**DTM**)
+1. [Topic Modeling](topic_modeling.html) - *Latent Semantic Analysis* (**LSA**) and *Latent Dirichlet Allocation* (**LDA**) models
+1. [Word Embeddings](glove.html) - *Global Vectors* (**GloVe**) word embeddings
+1. [Distances](distances.html) - various distances between documents - *Cosine, Jaccard, Relaxed Word Mover's Distance* (**RWMD**)
