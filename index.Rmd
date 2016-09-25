@@ -6,4 +6,15 @@ output:
     toc_float: false
 ---
 
-You just discovered text2vec!
+**text2vec** provides an efficient framework with a concise API for text analysis and natural language processing (NLP) in R. 
+
+This package is efficient because it is carefully written in C++, which also means that text2vec is memory friendly. Some parts, such as training GloVe word embeddings, are fully parallelized using the excellent [RcppParallel](http://rcppcore.github.io/RcppParallel/) package. This means that the word embeddings are computed in parallel on OS X, Linux, Windows, and Solaris (x86) without any additional tuning or tricks.
+Other emrassingly parallel tasks such as vectorization can use any parallel backend wich supports `foreach` package. So they can achieve near-linear scalability with number of available cores. 
+Finally, a streaming API means that  users do not have to load all the data into RAM. 
+
+For the detailed overview of `text2vec` functionality please refer to following pages:
+
+1. [Vectorization](vectorization.html) - creation *Document-Term matrices*
+1. [Topic Modeling](topic_modeling.html) - Latent Semantic Analysis (**LSA**) and Latent Dirichlet Allocation (**LDA**) models
+1. [Word Embeddings](glove.html) - Global Vectors (**GloVe**) word embeddings
+1. [Distances](distances.html) - various distances between documents - Cosine, Jaccard, Relaxed Word Mover's Distance (**RWMD**)

@@ -15,4 +15,3 @@ output:
 
 # Hashing trick
 
-# Cross validation and vectorization of new data

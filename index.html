@@ -195,7 +195,15 @@ $(document).ready(function () {
 </div>
 
 
-<p>You just discovered text2vec!</p>
+<p><strong>text2vec</strong> provides an efficient framework with a concise API for text analysis and natural language processing (NLP) in R.</p>
+<p>This package is efficient because it is carefully written in C++, which also means that text2vec is memory friendly. Some parts, such as training GloVe word embeddings, are fully parallelized using the excellent <a href="http://rcppcore.github.io/RcppParallel/">RcppParallel</a> package. This means that the word embeddings are computed in parallel on OS X, Linux, Windows, and Solaris (x86) without any additional tuning or tricks. Other emrassingly parallel tasks such as vectorization can use any parallel backend wich supports <code>foreach</code> package. So they can achieve near-linear scalability with number of available cores. Finally, a streaming API means that users do not have to load all the data into RAM.</p>
+<p>For the detailed overview of <code>text2vec</code> functionality please refer to following pages:</p>
+<ol style="list-style-type: decimal">
+<li><a href="vectorization.html">Vectorization</a> - creation <em>Document-Term matrices</em></li>
+<li><a href="topic_modeling.html">Topic Modeling</a> - Latent Semantic Analysis (<strong>LSA</strong>) and Latent Dirichlet Allocation (<strong>LDA</strong>) models</li>
+<li><a href="glove.html">Word Embeddings</a> - Global Vectors (<strong>GloVe</strong>) word embeddings</li>
+<li><a href="distances.html">Distances</a> - various distances between documents - Cosine, Jaccard, Relaxed Word Mover’s Distance (<strong>RWMD</strong>)</li>
+</ol>
 
 
 
