@@ -22,3 +22,5 @@ output:
       collapsed: false
     theme: cosmo
     highlight: haddock
+    include:
+      after_body: footer.html
