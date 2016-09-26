@@ -20,5 +20,5 @@ output:
     toc_depth: 3
     toc_float:
       collapsed: false
-    theme: yeti
+    theme: cosmo
     highlight: haddock

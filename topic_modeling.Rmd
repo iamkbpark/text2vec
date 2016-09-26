@@ -3,6 +3,10 @@ title: "Topic modeling"
 author: "Dmitriy Selivanov"
 date: "`r Sys.Date()`"
 ---
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE, echo=TRUE, warning=FALSE, message=FALSE)
+set.seed(2016L)
+```
 
 
 # Latent Semantic Analysis
@@ -31,7 +35,7 @@ doc_topic_distr = lda_model$fit_transform(dtm, n_iter = 100,
                                           check_convergence_every_n = 10)
 ```
 
-```{r, eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 lda_model$plot(out.dir = "./topic_modeling_files/ldavis", lambda.step = 0.1, open.browser = FALSE)
 ```
 ```{r, eval=FALSE}
